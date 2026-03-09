@@ -153,7 +153,8 @@ export default function PatientsPage() {
                     <TableCell className="hidden md:table-cell capitalize">{p.gender || '—'}</TableCell>
                     <TableCell className="hidden md:table-cell">{p.phone || '—'}</TableCell>
                     <TableCell className="hidden lg:table-cell">{p.date_of_birth ? format(new Date(p.date_of_birth), 'MMM d, yyyy') : '—'}</TableCell>
-                    <TableCell>
+                    <TableCell className="space-x-1">
+                      <Button asChild variant="ghost" size="sm"><Link to={`/patients/${p.id}`}><Eye className="h-4 w-4" /></Link></Button>
                       <Button variant="ghost" size="sm" onClick={() => openEdit(p)}>Edit</Button>
                     </TableCell>
                   </TableRow>
