@@ -28,7 +28,7 @@ export default function PatientsPage() {
       query = query.or(`name.ilike.%${search}%,phone.ilike.%${search}%`);
     }
     const { data } = await query;
-    setPatients(data || []);
+    setPatients((data as unknown as Patient[]) || []);
     setLoading(false);
   }, [search]);
 

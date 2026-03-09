@@ -21,7 +21,7 @@ export default function DoctorsPage() {
 
   const fetchDoctors = useCallback(async () => {
     const { data } = await supabase.from('doctors').select('*').order('name');
-    setDoctors(data || []);
+    setDoctors((data as unknown as Doctor[]) || []);
     setLoading(false);
   }, []);
 

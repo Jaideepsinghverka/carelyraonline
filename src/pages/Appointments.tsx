@@ -28,8 +28,8 @@ export default function AppointmentsPage() {
       supabase.from('doctors').select('*'),
       supabase.from('patients').select('id, name'),
     ]);
-    setAppointments(apptRes.data || []);
-    setDoctors(docRes.data || []);
+    setAppointments((apptRes.data as unknown as Appointment[]) || []);
+    setDoctors((docRes.data as unknown as Doctor[]) || []);
     setPatients(patRes.data || []);
     setLoading(false);
   }, []);
