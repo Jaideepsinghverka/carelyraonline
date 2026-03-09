@@ -11,23 +11,27 @@ export default function ReportsPage() {
   useEffect(() => {
     const fetchReports = async () => {
       const days = 14;
-      const data: any[] = [];
+      const startDate = subDays(new Date(), days - 1);
+      const startStr = `${format(startDate, 'yyyy-MM-dd')}T00:00:00`;
 
+      // Fetch all data in TWO queries instead of 28
+      const [apptsRes, patsRes] = await Promise.all([
+        supabase.from('appointments').select('appointment_time').gte('appointment_time', startStr),
+        supabase.from('patients').select('created_at').gte('created_at', startStr),
+      ]);
+
+      const appts = apptsRes.data || [];
+      const pats = patsRes.data || [];
+
+      // Group by date client-side
+      const data: any[] = [];
       for (let i = days - 1; i >= 0; i--) {
         const date = subDays(new Date(), i);
         const dateStr = format(date, 'yyyy-MM-dd');
-        const start = `${dateStr}T00:00:00`;
-        const end = `${dateStr}T23:59:59`;
-
-        const [appts, pats] = await Promise.all([
-          supabase.from('appointments').select('id', { count: 'exact', head: true }).gte('appointment_time', start).lte('appointment_time', end),
-          supabase.from('patients').select('id', { count: 'exact', head: true }).gte('created_at', start).lte('created_at', end),
-        ]);
-
         data.push({
           date: format(date, 'MMM d'),
-          appointments: appts.count || 0,
-          patients: pats.count || 0,
+          appointments: appts.filter(a => a.appointment_time?.startsWith(dateStr)).length,
+          patients: pats.filter(p => p.created_at?.startsWith(dateStr)).length,
         });
       }
 
