@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import type { Patient } from '@/types/database';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -28,7 +28,7 @@ export default function PatientsPage() {
       query = query.or(`name.ilike.%${search}%,phone.ilike.%${search}%`);
     }
     const { data } = await query;
-    setPatients(data || []);
+    setPatients((data as unknown as Patient[]) || []);
     setLoading(false);
   }, [search]);
 

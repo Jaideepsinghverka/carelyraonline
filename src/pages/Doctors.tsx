@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import type { Doctor } from '@/types/database';
 import { Card, CardContent } from '@/components/ui/card';
@@ -21,7 +21,7 @@ export default function DoctorsPage() {
 
   const fetchDoctors = useCallback(async () => {
     const { data } = await supabase.from('doctors').select('*').order('name');
-    setDoctors(data || []);
+    setDoctors((data as unknown as Doctor[]) || []);
     setLoading(false);
   }, []);
 
