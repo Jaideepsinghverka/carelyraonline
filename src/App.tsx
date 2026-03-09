@@ -10,6 +10,7 @@ import LoginPage from "@/pages/Login";
 import SignupPage from "@/pages/Signup";
 import DashboardPage from "@/pages/Dashboard";
 import PatientsPage from "@/pages/Patients";
+import PatientDetailPage from "@/pages/PatientDetail";
 import AppointmentsPage from "@/pages/Appointments";
 import DoctorsPage from "@/pages/Doctors";
 import ReportsPage from "@/pages/Reports";
