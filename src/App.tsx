@@ -7,6 +7,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import DashboardLayout from "@/components/DashboardLayout";
 import LoginPage from "@/pages/Login";
+import SignupPage from "@/pages/Signup";
 import DashboardPage from "@/pages/Dashboard";
 import PatientsPage from "@/pages/Patients";
 import AppointmentsPage from "@/pages/Appointments";
