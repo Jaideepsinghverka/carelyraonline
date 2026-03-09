@@ -10,6 +10,7 @@ import LoginPage from "@/pages/Login";
 import SignupPage from "@/pages/Signup";
 import DashboardPage from "@/pages/Dashboard";
 import PatientsPage from "@/pages/Patients";
+import PatientDetailPage from "@/pages/PatientDetail";
 import AppointmentsPage from "@/pages/Appointments";
 import DoctorsPage from "@/pages/Doctors";
 import ReportsPage from "@/pages/Reports";
@@ -32,6 +33,7 @@ const App = () => (
             <Route element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/patients" element={<PatientsPage />} />
+              <Route path="/patients/:id" element={<PatientDetailPage />} />
               <Route path="/appointments" element={<AppointmentsPage />} />
               <Route path="/doctors" element={<ProtectedRoute allowedRoles={['admin']}><DoctorsPage /></ProtectedRoute>} />
               <Route path="/reports" element={<ProtectedRoute allowedRoles={['admin']}><ReportsPage /></ProtectedRoute>} />
