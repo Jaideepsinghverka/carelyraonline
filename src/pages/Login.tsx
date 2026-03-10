@@ -62,6 +62,13 @@ export default function LoginPage() {
               Don't have an account?{' '}
               <a href="/signup" className="text-primary hover:underline">Sign up</a>
             </p>
+            <div className="relative my-2">
+              <div className="absolute inset-0 flex items-center"><span className="w-full border-t" /></div>
+              <div className="relative flex justify-center text-xs uppercase"><span className="bg-card px-2 text-muted-foreground">or</span></div>
+            </div>
+            <Button variant="outline" className="w-full" type="button" onClick={() => navigate('/patient/signup')}>
+              📅 Book an Appointment as Patient
+            </Button>
           </form>
         </CardContent>
       </Card>
