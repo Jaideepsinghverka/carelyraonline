@@ -15,6 +15,8 @@ import AppointmentsPage from "@/pages/Appointments";
 import DoctorsPage from "@/pages/Doctors";
 import ReportsPage from "@/pages/Reports";
 import SettingsPage from "@/pages/Settings";
+import PatientSignupPage from "@/pages/PatientSignup";
+import PatientBookAppointmentPage from "@/pages/PatientBookAppointment";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +31,8 @@ const App = () => (
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
+            <Route path="/patient/signup" element={<PatientSignupPage />} />
+            <Route path="/patient/book" element={<PatientBookAppointmentPage />} />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
               <Route path="/dashboard" element={<DashboardPage />} />

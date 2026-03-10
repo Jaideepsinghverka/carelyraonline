@@ -1,4 +1,4 @@
-export type AppRole = 'admin' | 'receptionist' | 'doctor';
+export type AppRole = 'admin' | 'receptionist' | 'doctor' | 'patient';
 
 export interface Hospital {
   id: string;
