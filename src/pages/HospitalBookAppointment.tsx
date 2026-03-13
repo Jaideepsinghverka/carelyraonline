@@ -114,8 +114,8 @@ export default function HospitalBookAppointmentPage() {
       <div className="min-h-screen flex items-center justify-center bg-background p-4">
         <Card className="w-full max-w-md animate-fade-in text-center">
           <CardContent className="pt-8 pb-8 space-y-4">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
-              <CheckCircle className="h-8 w-8 text-green-600" />
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+              <CheckCircle className="h-8 w-8 text-primary" />
             </div>
             <h2 className="text-2xl font-heading font-bold">Appointment Booked!</h2>
             <p className="text-muted-foreground">Your appointment at {hospital?.name} has been scheduled.</p>

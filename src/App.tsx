@@ -15,8 +15,11 @@ import AppointmentsPage from "@/pages/Appointments";
 import DoctorsPage from "@/pages/Doctors";
 import ReportsPage from "@/pages/Reports";
 import SettingsPage from "@/pages/Settings";
+import MasterPanelPage from "@/pages/MasterPanel";
 import PatientSignupPage from "@/pages/PatientSignup";
 import PatientBookAppointmentPage from "@/pages/PatientBookAppointment";
+import HospitalPatientSignupPage from "@/pages/HospitalPatientSignup";
+import HospitalBookAppointmentPage from "@/pages/HospitalBookAppointment";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,8 +34,12 @@ const App = () => (
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
+            {/* Legacy patient routes (hardcoded hospital) */}
             <Route path="/patient/signup" element={<PatientSignupPage />} />
             <Route path="/patient/book" element={<PatientBookAppointmentPage />} />
+            {/* Hospital-specific patient routes */}
+            <Route path="/h/:slug/signup" element={<HospitalPatientSignupPage />} />
+            <Route path="/h/:slug/book" element={<HospitalBookAppointmentPage />} />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
               <Route path="/dashboard" element={<DashboardPage />} />
@@ -42,6 +49,7 @@ const App = () => (
               <Route path="/doctors" element={<ProtectedRoute allowedRoles={['admin']}><DoctorsPage /></ProtectedRoute>} />
               <Route path="/reports" element={<ProtectedRoute allowedRoles={['admin']}><ReportsPage /></ProtectedRoute>} />
               <Route path="/settings" element={<ProtectedRoute allowedRoles={['admin']}><SettingsPage /></ProtectedRoute>} />
+              <Route path="/master" element={<ProtectedRoute allowedRoles={['super_admin']}><MasterPanelPage /></ProtectedRoute>} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
