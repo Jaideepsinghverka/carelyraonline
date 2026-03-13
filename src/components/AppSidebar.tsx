@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, Users, CalendarDays, Stethoscope,
-  BarChart3, Settings, Activity, LogOut,
+  BarChart3, Settings, Activity, LogOut, Building2,
 } from 'lucide-react';
 import { NavLink } from '@/components/NavLink';
 import { useAuth } from '@/hooks/useAuth';
@@ -13,9 +13,10 @@ import {
 import { Button } from '@/components/ui/button';
 
 const navItems = [
-  { title: 'Dashboard', url: '/dashboard', icon: LayoutDashboard, roles: ['admin', 'receptionist', 'doctor'] },
-  { title: 'Patients', url: '/patients', icon: Users, roles: ['admin', 'receptionist', 'doctor'] },
-  { title: 'Appointments', url: '/appointments', icon: CalendarDays, roles: ['admin', 'receptionist', 'doctor'] },
+  { title: 'Master Panel', url: '/master', icon: Building2, roles: ['super_admin'] },
+  { title: 'Dashboard', url: '/dashboard', icon: LayoutDashboard, roles: ['admin', 'receptionist', 'doctor', 'super_admin'] },
+  { title: 'Patients', url: '/patients', icon: Users, roles: ['admin', 'receptionist', 'doctor', 'super_admin'] },
+  { title: 'Appointments', url: '/appointments', icon: CalendarDays, roles: ['admin', 'receptionist', 'doctor', 'super_admin'] },
   { title: 'Doctors', url: '/doctors', icon: Stethoscope, roles: ['admin'] },
   { title: 'Reports', url: '/reports', icon: BarChart3, roles: ['admin'] },
   { title: 'Settings', url: '/settings', icon: Settings, roles: ['admin'] },
