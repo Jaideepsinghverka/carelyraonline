@@ -1,8 +1,9 @@
-export type AppRole = 'admin' | 'receptionist' | 'doctor' | 'patient';
+export type AppRole = 'admin' | 'receptionist' | 'doctor' | 'patient' | 'super_admin';
 
 export interface Hospital {
   id: string;
   name: string;
+  slug: string;
   address: string | null;
   phone: string | null;
   created_at: string;
@@ -53,7 +54,6 @@ export interface Appointment {
   status: AppointmentStatus;
   notes: string | null;
   created_at: string;
-  // Joined
   patient?: Patient;
   doctor?: Doctor;
 }
