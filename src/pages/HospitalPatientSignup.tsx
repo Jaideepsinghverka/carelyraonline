@@ -67,7 +67,7 @@ export default function HospitalPatientSignupPage() {
         user_id: session.user.id,
       } as any);
       toast.success('Account created! You can now book appointments.');
-      navigate(`/h/${slug}/book`);
+      navigate(`/h/${slug}/dashboard`);
     } else {
       // Email confirmation required — show message
       toast.success('Account created! Please check your email to confirm, then log in to book appointments.');
