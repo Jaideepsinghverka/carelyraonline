@@ -54,7 +54,7 @@ export default function HospitalBookAppointmentPage() {
     const fetchData = async () => {
       const [docRes, patRes] = await Promise.all([
         supabase.from('doctors').select('id, name, specialization').eq('hospital_id', hospital.id),
-        supabase.from('patients').select('id').eq('hospital_id', hospital.id).eq('name', user.profile.name).limit(1),
+        supabase.from('patients').select('id').eq('hospital_id', hospital.id).eq('user_id', user.id).limit(1),
       ]);
       setDoctors((docRes.data as Doctor[]) || []);
       if (patRes.data && patRes.data.length > 0) {

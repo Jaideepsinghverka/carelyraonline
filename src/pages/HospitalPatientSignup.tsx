@@ -55,7 +55,7 @@ export default function HospitalPatientSignupPage() {
       return;
     }
 
-    // Create patient record
+    // Try to create patient record immediately if session is available
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
       await supabase.from('patients').insert({
@@ -64,11 +64,15 @@ export default function HospitalPatientSignupPage() {
         phone: form.phone || null,
         date_of_birth: form.date_of_birth || null,
         gender: form.gender || null,
-      });
+        user_id: session.user.id,
+      } as any);
+      toast.success('Account created! You can now book appointments.');
+      navigate(`/h/${slug}/book`);
+    } else {
+      // Email confirmation required — show message
+      toast.success('Account created! Please check your email to confirm, then log in to book appointments.');
+      navigate('/login');
     }
-
-    toast.success('Account created! You can now book appointments.');
-    navigate(`/h/${slug}/book`);
   };
 
   if (loading) {
