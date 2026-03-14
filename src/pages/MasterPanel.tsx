@@ -99,21 +99,19 @@ export default function MasterPanelPage() {
     e.preventDefault();
     setSubmitting(true);
 
-    // Create user via auth signup
-    const { data, error } = await supabase.auth.signUp({
-      email: adminForm.email,
-      password: adminForm.password,
-      options: {
-        data: {
-          name: adminForm.name,
-          hospital_id: adminForm.hospital_id,
-          role: 'admin',
-        },
+    // Use edge function to create admin without logging out current user
+    const { data: session } = await supabase.auth.getSession();
+    const { data, error } = await supabase.functions.invoke('create-admin', {
+      body: {
+        email: adminForm.email,
+        password: adminForm.password,
+        name: adminForm.name,
+        hospital_id: adminForm.hospital_id,
       },
     });
 
-    if (error) {
-      toast.error(error.message);
+    if (error || data?.error) {
+      toast.error(data?.error || error?.message || 'Failed to create admin');
       setSubmitting(false);
       return;
     }
