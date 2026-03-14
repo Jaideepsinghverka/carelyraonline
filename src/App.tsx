@@ -41,6 +41,7 @@ const App = () => (
             {/* Hospital-specific patient routes */}
             <Route path="/h/:slug/signup" element={<HospitalPatientSignupPage />} />
             <Route path="/h/:slug/book" element={<HospitalBookAppointmentPage />} />
+            <Route path="/h/:slug/dashboard" element={<PatientDashboardPage />} />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
               <Route path="/dashboard" element={<DashboardPage />} />
