@@ -20,6 +20,7 @@ import PatientSignupPage from "@/pages/PatientSignup";
 import PatientBookAppointmentPage from "@/pages/PatientBookAppointment";
 import HospitalPatientSignupPage from "@/pages/HospitalPatientSignup";
 import HospitalBookAppointmentPage from "@/pages/HospitalBookAppointment";
+import PatientDashboardPage from "@/pages/PatientDashboard";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
