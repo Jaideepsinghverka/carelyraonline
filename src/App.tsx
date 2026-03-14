@@ -20,6 +20,7 @@ import PatientSignupPage from "@/pages/PatientSignup";
 import PatientBookAppointmentPage from "@/pages/PatientBookAppointment";
 import HospitalPatientSignupPage from "@/pages/HospitalPatientSignup";
 import HospitalBookAppointmentPage from "@/pages/HospitalBookAppointment";
+import PatientDashboardPage from "@/pages/PatientDashboard";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
             {/* Hospital-specific patient routes */}
             <Route path="/h/:slug/signup" element={<HospitalPatientSignupPage />} />
             <Route path="/h/:slug/book" element={<HospitalBookAppointmentPage />} />
+            <Route path="/h/:slug/dashboard" element={<PatientDashboardPage />} />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
               <Route path="/dashboard" element={<DashboardPage />} />

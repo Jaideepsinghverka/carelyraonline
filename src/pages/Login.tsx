@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -24,6 +25,23 @@ export default function LoginPage() {
       setError(error.message);
       setLoading(false);
     } else {
+      // Fetch user roles to determine redirect
+      const { data: { user: authUser } } = await supabase.auth.getUser();
+      if (authUser) {
+        const { data: roles } = await supabase.from('user_roles').select('role').eq('user_id', authUser.id);
+        const isPatient = roles?.some(r => r.role === 'patient');
+        if (isPatient) {
+          // Get hospital slug for patient redirect
+          const { data: profile } = await supabase.from('profiles').select('hospital_id').eq('id', authUser.id).single();
+          if (profile) {
+            const { data: hospital } = await supabase.from('hospitals').select('slug').eq('id', profile.hospital_id).single();
+            if (hospital) {
+              navigate(`/h/${hospital.slug}/dashboard`);
+              return;
+            }
+          }
+        }
+      }
       navigate('/dashboard');
     }
   };

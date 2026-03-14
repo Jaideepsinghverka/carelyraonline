@@ -123,6 +123,9 @@ export default function HospitalBookAppointmentPage() {
               <Button variant="outline" onClick={() => { setBooked(false); setForm({ doctor_id: '', appointment_time: '', notes: '' }); }}>
                 Book Another
               </Button>
+              <Button asChild>
+                <Link to={`/h/${slug}/dashboard`}>View My Appointments</Link>
+              </Button>
             </div>
           </CardContent>
         </Card>
