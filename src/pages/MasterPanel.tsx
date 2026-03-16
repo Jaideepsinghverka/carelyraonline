@@ -270,8 +270,11 @@ export default function MasterPanelPage() {
                     </TableCell>
                     <TableCell>
                       <div className="flex gap-1">
-                        <Button variant="ghost" size="icon" title="Copy patient URL" onClick={() => copyPatientUrl(h.slug)}>
+                        <Button variant="ghost" size="icon" title="Copy signup URL" onClick={() => copyUrl(h.slug, 'signup')}>
                           <Copy className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="icon" title="Copy booking URL" onClick={() => copyUrl(h.slug, 'book')}>
+                          <CalendarDays className="h-4 w-4 text-primary" />
                         </Button>
                         <Button variant="ghost" size="icon" title="Delete hospital" onClick={() => handleDeleteHospital(h.id, h.name)} className="text-destructive hover:text-destructive">
                           <Trash2 className="h-4 w-4" />
