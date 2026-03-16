@@ -134,10 +134,10 @@ export default function MasterPanelPage() {
     fetchHospitals();
   };
 
-  const copyPatientUrl = (slug: string) => {
-    const url = `${window.location.origin}/h/${slug}/signup`;
+  const copyUrl = (slug: string, type: 'signup' | 'book') => {
+    const url = `${window.location.origin}/h/${slug}/${type}`;
     navigator.clipboard.writeText(url);
-    toast.success('Patient URL copied to clipboard!');
+    toast.success(`${type === 'signup' ? 'Signup' : 'Booking'} URL copied!`);
   };
 
   return (
